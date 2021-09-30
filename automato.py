@@ -14,7 +14,7 @@ class Musica(metaclass=IterMusica):
 
 def registrar_musicas():
     import os
-
+    
     pasta = 'musicas'
 
     caminhos = [os.path.join(pasta, nome) for nome in os.listdir(pasta)]
@@ -32,7 +32,7 @@ def main():
         Função principal da aplicação
 
         1ª Entrada
-        2ª 
+        2ª Verificação se a string digitada está na letra
     """
     
     import os
@@ -56,13 +56,3 @@ def main():
 if __name__ == '__main__':
     
     main()
-
-
-# def funcao_um:
-#   funcao_dois(self, nome_da_musica)
-
-# def funcao_dois:
-#   funcao_tres()
-
-# def funcao_tres:
-#   funcao_um()
