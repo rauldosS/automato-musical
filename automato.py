@@ -1,4 +1,8 @@
-class Musica:
+class IterMusica(type):
+    def __iter__(cls):
+        return iter(cls.instances)
+
+class Musica(metaclass=IterMusica):
     instances = []
     def __init__(self, nome, letra):
         self.__class__.instances.append(self)
@@ -7,9 +11,6 @@ class Musica:
         
     def __str__(self):
         return self.nome
-
-    def get_letras(self):
-        pass
 
 def registrar_musicas():
     import os
@@ -36,18 +37,21 @@ def main():
     
     import os
 
-    os.startfile('ameno.mp3')
 
     registrar_musicas()
 
     palavra = input("Digite uma palavra: ")
 
-    print(Musica.instances)
-
-    for musica in Musica.instances:
+    for musica in Musica:
         print(f'Verificando a música "{ musica.nome }"...')
 
-        print(f'A música "{ musica.nome }" { "contém" if palavra in musica else "não contem" } a palavra "{ palavra }" em sua letra!')
+        if palavra in musica.letra:
+            print(f'A música "{ musica.nome }" contém a palavra "{ palavra }" em sua letra!')
+
+            print('Reproduzindo a música...')
+            os.startfile(f'mp3\\{ musica.nome }.mp3')
+        else:
+            print(f'A música "{ musica.nome }" não contém a palavra "{ palavra }" em sua letra!')
 
 if __name__ == '__main__':
     
